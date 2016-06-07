@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3C627780-617F-4F4C-93A8-B413D2376B2A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BDBB2DF3-DD88-4F86-AC57-BF7F798CDEFA}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ExtraFiles", "src\ExtraFiles\ExtraFiles.xproj", "{27894290-915F-4609-8182-750741FB6006}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ArchiveAfterPublish", "src\ArchiveAfterPublish\ArchiveAfterPublish.xproj", "{86E1E6C2-CFEF-42DA-8193-32B301265D21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27894290-915F-4609-8182-750741FB6006}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27894290-915F-4609-8182-750741FB6006}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27894290-915F-4609-8182-750741FB6006}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27894290-915F-4609-8182-750741FB6006}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86E1E6C2-CFEF-42DA-8193-32B301265D21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E1E6C2-CFEF-42DA-8193-32B301265D21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E1E6C2-CFEF-42DA-8193-32B301265D21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E1E6C2-CFEF-42DA-8193-32B301265D21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{27894290-915F-4609-8182-750741FB6006} = {3C627780-617F-4F4C-93A8-B413D2376B2A}
+		{86E1E6C2-CFEF-42DA-8193-32B301265D21} = {3C627780-617F-4F4C-93A8-B413D2376B2A}
+	EndGlobalSection
+EndGlobal
