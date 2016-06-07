@@ -4,9 +4,9 @@ build_script:
   - ps: .\appveyor.ps1
 
 environment:
-  pubUsername:
+  starterWebPubUsername:
     secure: tQtDL/ODtYn28mOHRTii8qnxQbLnO1QFdMW2AGxRFts=
-  pubPassword:    
+  starterWebPubPassword:    
     secure: DhJEweVCMJVnaMHflHrPRxkTqKQdgUw1TQub7Ie/pC8ePkSJNtYJ3z8fP9ag/FngQuMYcFE1QMrvX+FbbZ5LOA==
 
 test: off
