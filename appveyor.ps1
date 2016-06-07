@@ -12,13 +12,14 @@ npm install gulp -g
 npm install gulp-util -g
 Set-Location (Join-Path $scriptDir 'samples\src\StarterWeb')
 dotnet restore
-#msbuild StarterWeb.xproj /p:DeployOnBuild=true /p:PublishProfile='SayedStarterWeb - Web Deploy' /p:Username=$env:starterWebPubUsername /p:Password=$env:starterWebPubPassword /p:Configuration=Release
+msbuild StarterWeb.xproj /p:DeployOnBuild=true /p:PublishProfile='SayedStarterWeb - Web Deploy' /p:Username=$env:starterWebPubUsername /p:Password=$env:starterWebPubPassword /p:Configuration=Release
 
 <#
 .SYNOPSIS
     You can add this to you build script to ensure that psbuild is available before calling
     Invoke-MSBuild. If psbuild is not available locally it will be downloaded automatically.
 #>
+<#
 function EnsurePsbuildInstlled{
     [cmdletbinding()]
     param(
@@ -63,3 +64,4 @@ $buildProps = @{
 }
 $projFile = "$scriptDir\samples\src\StarterWeb\StarterWeb.xproj"
 Invoke-MSBuild -projectsToBuild $projFile -properties $buildProps -password $env:starterWebPubPassword 
+#>
