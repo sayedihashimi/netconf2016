@@ -90,7 +90,7 @@ try{
     'before'|Write-Host
     
     # dotnet.exe publish --output $packDir --configuration Release
-    Invoke-CommandString -command dotnet -commandArgs 'publish --output $packDir --configuration Release' -ignoreErrors
+    Invoke-CommandString -command dotnet -commandArgs 'publish --output $packDir --configuration Release' -ignoreErrors $true
     
     'after'|Write-Host
 
