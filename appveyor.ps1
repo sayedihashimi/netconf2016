@@ -11,14 +11,60 @@ $projectDir = "$thisScriptDir\samples\src\StarterWeb"
 $packDir = "$pubTemp\$([datetime]::now.Ticks)"
 
 dotnet -v
+function Invoke-CommandString{
+    [cmdletbinding()]
+    param(
+        [Parameter(Mandatory=$true,Position=0,ValueFromPipeline=$true)]
+        [string[]]$command,
+        
+        [Parameter(Position=1)]
+        $commandArgs,
 
+        $ignoreErrors,
+
+        [switch]$disableCommandQuoting
+    )
+    process{
+        foreach($cmdToExec in $command){
+            'Executing command [{0}]' -f $cmdToExec | Write-Verbose
+            
+            # write it to a .cmd file
+            $destPath = "$([System.IO.Path]::GetTempFileName()).cmd"
+            if(Test-Path $destPath){Remove-Item $destPath|Out-Null}
+            
+            try{
+                $commandstr = $cmdToExec
+                if(-not $disableCommandQuoting -and $commandstr.Contains(' ') -and (-not ($commandstr -match '''.*''|".*"' ))){
+                    $commandstr = ('"{0}"' -f $commandstr)
+                }
+
+                '{0} {1}' -f $commandstr, ($commandArgs -join ' ') | Set-Content -Path $destPath | Out-Null
+
+                $actualCmd = ('"{0}"' -f $destPath)
+
+                cmd.exe /D /C $actualCmd
+                
+                if(-not $ignoreErrors -and ($LASTEXITCODE -ne 0)){
+                    $msg = ('The command [{0}] exited with code [{1}]' -f $commandstr, $LASTEXITCODE)
+                    throw $msg
+                }
+            }
+            finally{
+                if(Test-Path $destPath){Remove-Item $destPath -ErrorAction SilentlyContinue |Out-Null}
+            }
+        }
+    }
+}
 try{    
     # create temp dir for packout
     New-Item -Path $packDir -ItemType Directory
     'projDir [{0}]. packDir [{1}]' -f $projectDir,$packDir | Write-Host -ForegroundColor Green
     Set-Location $projectDir
     'before'|Write-Host
-    dotnet.exe publish --output $packDir --configuration Release
+    
+    # dotnet.exe publish --output $packDir --configuration Release
+    Invoke-CommandString -command dotnet -commandArgs '--output $packDir --configuration Release'
+    
     'after'|Write-Host
 
     # get username and password from a file outside source control
