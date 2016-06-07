@@ -18,7 +18,7 @@ try{
     'projDir [{0}]. packDir [{1}]' -f $projectDir,$packDir | Write-Host -ForegroundColor Green
     Set-Location $projectDir
     'before'|Write-Host
-    dotnet publish --output $packDir --configuration Release
+    dotnet.exe publish --output $packDir --configuration Release
     'after'|Write-Host
 
     # get username and password from a file outside source control
