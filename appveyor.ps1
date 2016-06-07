@@ -10,6 +10,8 @@ if(-not (Test-Path $pubTemp)){ New-Item -Path $pubTemp -ItemType Directory }
 $projectDir = "$thisScriptDir\samples\src\StarterWeb"
 $packDir = "$pubTemp\$([datetime]::now.Ticks)"
 
+dotnet -v
+
 try{
     Set-Location $projectDir
     # create temp dir for packout
