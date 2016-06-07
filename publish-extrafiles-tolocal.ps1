@@ -12,7 +12,8 @@ try{
     New-Item -Path $packDir -ItemType Directory
     dotnet publish --output $packDir --configuration Release
 
-    & .\Properties\PublishProfiles\ToFileSys-publish.ps1 -packOutput $packDir -pubProfilePath '.\Properties\PublishProfiles\ToFileSys.pubxml'
+    $pubxmlpath=([System.IO.Path]::GetFullPath((join-path $extraFilesDir '.\Properties\PublishProfiles\ToFileSys.pubxml')))
+    & .\Properties\PublishProfiles\ToFileSys-publish.ps1 -packOutput $packDir -pubProfilePath $pubxmlpath
 }
 finally{
     if(Test-Path $packDir){

@@ -22,9 +22,10 @@ try{
         . $secretsFile
     }
     
-    $pubxmlpath=([System.IO.Path]::GetFullPath('.\Properties\PublishProfiles\SayedStarterWeb - Web Deploy.pubxml'))
+    $pubxmlpath=([System.IO.Path]::GetFullPath((join-path $projectDir '.\Properties\PublishProfiles\SayedStarterWeb - Web Deploy.pubxml')))
     & '.\Properties\PublishProfiles\SayedStarterWeb - Web Deploy-publish.ps1' -packOutput $packDir -pubProfilePath 'C:\data\mycode\netconf2016\samples\src\StarterWeb\Properties\PublishProfiles\SayedStarterWeb - Web Deploy.pubxml' -publishproperties @{'Username'=$pubUsername}
 }
+catch{}
 finally{
     Pop-Location
     if(Test-Path $packDir){
