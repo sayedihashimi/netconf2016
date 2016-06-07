@@ -62,4 +62,5 @@ $buildProps = @{
     'Configuration'='Release'
     'WebPublishMethod'='MSDeploy'
 }
-Invoke-MSBuild -projectsToBuild StarterWeb.xproj -properties $buildProps -password $env:starterWebPubPassword 
+$projFile = "$scriptDir\samples\src\StarterWeb\StarterWeb.xproj"
+Invoke-MSBuild -projectsToBuild $projFile -properties $buildProps -password $env:starterWebPubPassword 
