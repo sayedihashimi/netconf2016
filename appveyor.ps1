@@ -10,7 +10,34 @@ if(-not (Test-Path $pubTemp)){ New-Item -Path $pubTemp -ItemType Directory }
 $projectDir = "$thisScriptDir\samples\src\StarterWeb"
 $packDir = "$pubTemp\$([datetime]::now.Ticks)"
 
+function InstallDotNetCli{
+    [cmdletbinding()]
+    param()
+    process{
+        [string]$dotnetInstallUrl = 'https://raw.githubusercontent.com/dotnet/cli/rel/1.0.0/scripts/obtain/dotnet-install.ps1'
+        $oldloc = Get-Location
+        try{
+            Set-Location ($slnfile.DirectoryName)
+            $tempfile = '{0}.ps1' -f ([System.IO.Path]::GetTempFileName())
+            (new-object net.webclient).DownloadFile($dotnetInstallUrl,$tempfile)
+            $installArgs = ''
+            if(-not ([string]::IsNullOrWhiteSpace($dotnetInstallChannel))){
+                $installArgs = '-Channel ' + $dotnetInstallChannel
+            }
+            Invoke-Expression "& `"$tempfile`" $installArgs"
+            $env:path+=";$env:localappdata\Microsoft\dotnet\bin"
+            & dotnet --version
+            Remove-Item $tempfile -ErrorAction SilentlyContinue
+        }
+        finally{
+            Set-Location $oldloc
+        }
+    }
+}
+
+InstallDotNetCli
 dotnet -v
+get-command dotnet
 function Invoke-CommandString{
     [cmdletbinding()]
     param(
@@ -63,7 +90,7 @@ try{
     'before'|Write-Host
     
     # dotnet.exe publish --output $packDir --configuration Release
-    Invoke-CommandString -command dotnet -commandArgs 'publish --output $packDir --configuration Release'
+    Invoke-CommandString -command dotnet -commandArgs 'publish --output $packDir --configuration Release' -ignoreErrors
     
     'after'|Write-Host
 
