@@ -63,7 +63,7 @@ try{
     'before'|Write-Host
     
     # dotnet.exe publish --output $packDir --configuration Release
-    Invoke-CommandString -command dotnet -commandArgs '--output $packDir --configuration Release'
+    Invoke-CommandString -command dotnet -commandArgs 'publish --output $packDir --configuration Release'
     
     'after'|Write-Host
 
