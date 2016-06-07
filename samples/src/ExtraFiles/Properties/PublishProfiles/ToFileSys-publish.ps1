@@ -102,10 +102,11 @@ try{
     }
 
     # copy files to output directory before publish so they are included
+	' *** Copying images from external-images to wwwroot\images' | Write-Output
     $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
     $extraFilesFolder = (Join-Path $scriptPath '..\..\..\..\..\external-images')
 
-    Get-ChildItem $extraFilesFolder | Copy-Item -Destination "$packOutput\wwwroot\images" 
+    Get-ChildItem $extraFilesFolder | Copy-Item -Destination "$packOutput\wwwroot\images"
 
     'Calling Publish-AspNet' | Write-Verbose
     # call Publish-AspNet to perform the publish operation
