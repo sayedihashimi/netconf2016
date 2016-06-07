@@ -1,0 +1,12 @@
+os: Visual Studio 2015
+
+build_script:
+  - ps: .\appveyor.ps1
+
+environment:
+  pubUsername:
+    secure: tQtDL/ODtYn28mOHRTii8qnxQbLnO1QFdMW2AGxRFts=
+  pubPassword:    
+    secure: DhJEweVCMJVnaMHflHrPRxkTqKQdgUw1TQub7Ie/pC8ePkSJNtYJ3z8fP9ag/FngQuMYcFE1QMrvX+FbbZ5LOA==
+
+test: off
