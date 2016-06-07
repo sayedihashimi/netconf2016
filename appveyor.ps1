@@ -59,7 +59,7 @@ $buildProps = @{
     'DeployOnBuild'='true'
     'PublishProfile'='SayedStarterWeb - Web Deploy'
     'Username'=$env:starterWebPubUsername
-    'Password'=$env:starterWebPubPassword 
     'Configuration'='Release'
+    'WebPublishMethod'='MSDeploy'
 }
-Invoke-MSBuild -projectsToBuild StarterWeb.xproj -properties $buildProps
+Invoke-MSBuild -projectsToBuild StarterWeb.xproj -properties $buildProps -password $env:starterWebPubPassword 
