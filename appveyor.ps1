@@ -1,5 +1,9 @@
 
-$thisScriptDir = split-path -parent $MyInvocation.MyCommand.Definition
+function Get-ScriptDirectory{
+    split-path (((Get-Variable MyInvocation -Scope 1).Value).MyCommand.Path)
+}
+
+$thisScriptDir = (Get-ScriptDirectory)
 $env:NODE_PATH="$env:APPDATA\npm\node_modules"
 $env:path+=";${env:ProgramFiles(x86)}\Microsoft Visual Studio 14.0\Web\External"
 $env:path+=";${env:ProgramFiles(x86)}\Microsoft Visual Studio 14.0\Web\External\git"
