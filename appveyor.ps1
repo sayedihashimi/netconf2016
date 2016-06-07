@@ -12,10 +12,11 @@ $packDir = "$pubTemp\$([datetime]::now.Ticks)"
 
 dotnet -v
 
-try{
-    Set-Location $projectDir
+try{    
     # create temp dir for packout
     New-Item -Path $packDir -ItemType Directory
+    'projDir [{0}]. packDir [{1}]' -f $projectDir,$packDir | Write-Host -ForegroundColor Green
+    Set-Location $projectDir
     dotnet publish --output $packDir --configuration Release
 
     # get username and password from a file outside source control
